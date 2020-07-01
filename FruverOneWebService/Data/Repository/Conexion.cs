@@ -1,11 +1,12 @@
 ﻿using Data.ControlRepository;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Data.Repository
 {
-    class Conexion : IConexion
+    public class Conexion : IConexion
     {//Parámetros necesarios para realizar la conexion a la base de datos:
         private const string server = "localhost";
         private const string port = "5432";
@@ -17,7 +18,7 @@ namespace Data.Repository
         //Objeto que permite realizar la conexión a la base de datos con PostgreSQL
         private readonly NpgsqlConnection conexionDb;
 
-        public DbContextPostgre()
+        public Conexion()
         {
             conexionDb = new NpgsqlConnection();
         }
@@ -52,6 +53,11 @@ namespace Data.Repository
             }
 
             return conexionDb;
+        }
+
+        NpgsqlConnection IConexion.ConnectDb()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Data.Repository
         /// </summary>
         /// <param name="query">Cadena con la consulta sql a ejecutar</param>
         /// <returns>Verdadero si la consulta se ejecutó con éxito, false de lo contrario</returns>
-        private bool ConstruirConsulta(string query)
+        public bool ConstruirConsulta(string query)
         {
             try
             {
@@ -34,7 +34,6 @@ namespace Data.Repository
                 
                 command.ExecuteNonQuery();
                 conection.CloseConectionDb(); 
-
                 return true;
 
             }
@@ -95,9 +94,5 @@ namespace Data.Repository
         /// <returns>True si la eliminación fué completada, false de lo contrario</returns>
         public bool UpdateBD(string query) => this.ConstruirConsulta(query);
 
-        bool IGestionInformacion.ConstruirConsulta(string query)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -4,12 +4,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIFruverOne", "APIFruverOne\APIFruverOne.csproj", "{784A7DEF-E0EA-421F-BF98-EA5FEC509D18}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E8C6B138-13E6-4CEE-BFE7-ECA633AC517C} = {E8C6B138-13E6-4CEE-BFE7-ECA633AC517C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{E8C6B138-13E6-4CEE-BFE7-ECA633AC517C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{662B3D3C-FD77-4FEE-8BBB-08B0F6C554A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{BCAF912E-9D3F-44C0-BFED-034429F89934}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{BCAF912E-9D3F-44C0-BFED-034429F89934}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient", "WebClient\WebClient.csproj", "{DDD6A5A9-6769-4843-A1B3-C84E7458DC36}"
 EndProject
