@@ -14,7 +14,7 @@ namespace Business.Control
 {
     public class ControlRegisterCustomer
     {
-        ResponseQuery query;
+        readonly ResponseQuery query;
 
        public ControlRegisterCustomer()
         {
@@ -29,9 +29,9 @@ namespace Business.Control
         {
             Customer customer = this.CreateModelCustomer(dataCustomer);
 
-            string commandSql = "INSERT INTO public.\"CUSTOMER\" VALUES" +
-                                $"({customer.Document},{customer.Name},{customer.LastName},{customer.PhoneNumber}," +
-                                $"{customer.Address})";
+            string commandSql = "INSERT INTO public.\"Customer\" VALUES" +
+                                $"('{customer.Document}','{customer.Name}','{customer.LastName}','{customer.PhoneNumber}'," +
+                                $"'{customer.Address}')";
 
             bool requestCustomer = query.ResolveQueryInsert(commandSql);
 
@@ -51,8 +51,8 @@ namespace Business.Control
         {
             UserAccount account = this.CreateModelAccount(dataCustomer);
 
-            string commandSql = "INSERT INTO public.\"USERACCOUNT\" VALUES" +
-                                $"({account.Email},{account.Password},{account.DocumentCustomer})";
+            string commandSql = "INSERT INTO public.\"UserAccount\" VALUES" +
+                                $"('{account.Email}','{account.Password}','{account.DocumentCustomer}')";
 
             bool request = query.ResolveQueryInsert(commandSql);
 
@@ -78,40 +78,11 @@ namespace Business.Control
                 Document = dataCustomer["document"].ToString(),
                 Name = dataCustomer["name"].ToString(),
                 LastName = dataCustomer["lastname"].ToString(),
-                PhoneNumber = Int16.Parse(dataCustomer["phonenumber"].ToString()),
+                PhoneNumber = Convert.ToInt64(dataCustomer["phonenumber"].ToString()),
                 Address = dataCustomer["address"].ToString()
             };
 
         }
         
-
-        /// <summary>
-        /// Consulta y retorna una lista con la información de todos los clientes registrados en la
-        /// Plataforma.
-        /// </summary>
-        /// <returns>Lista con los clientes almacenados en la base de datos</returns>
-        public List<Customer> GetCustomers()
-        {
-            List<Customer> listCustomers = new List<Customer>();
-            const string commandSql = "SELECT * FROM PUBLIC.\"CUSTOMER\"";
-
-            var data = query.ResolveQuerySelect(commandSql);
-            foreach (DataRow row in data.Rows)
-            {
-                listCustomers.Add(new Customer()
-                {
-                    Document = row.Field<string>(data.Columns[0]),
-                    Name = row.Field<string>(data.Columns[1]),
-                    LastName = row.Field<string>(data.Columns[2]),
-                    PhoneNumber = row.Field<int>(data.Columns[3]),
-                    Address = row.Field<string>(data.Columns[4])
-                });
-               
-            }
-
-            return listCustomers;
-
-        }
-
     }
 }

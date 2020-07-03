@@ -42,12 +42,12 @@ namespace Datos.DbContext
                 return true;
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Console.WriteLine("Error en la insersión");
+                Console.WriteLine($"Error en la insersión {ex.Message}");
                 return false;
             }
-
+            
         }
 
         /// <summary>

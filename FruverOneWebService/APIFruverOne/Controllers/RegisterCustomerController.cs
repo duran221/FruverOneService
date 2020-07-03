@@ -1,52 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Mvc;
-using Antlr.Runtime.Misc;
 using Business.Control;
+using Domain.Class;
 using Newtonsoft.Json.Linq;
 
 namespace APIFruverOne.Controllers
 {
     public class RegisterCustomerController : ApiController
     {
+        //Variables de instancia de las clases de control de la capa de Negocio:
         private readonly ControlRegisterCustomer controlRegister;
+        private readonly ControlGetCustomer controlGetCustomer;
 
         public RegisterCustomerController()
         {
             controlRegister = new ControlRegisterCustomer();
+            controlGetCustomer = new ControlGetCustomer();
         }
 
-        // GET: api/RegisterCustomer
+
+
+        /// <summary>
+        /// Permite obtener información de todos los clientes (Customer) registrados en el sistema
+        /// Ruta para acceso: GET: api/RegisterCustomer
+        /// </summary>
+        /// <returns></returns>
         public bool Get()
         {
+            var costumers = controlGetCustomer.GetCustomers();
             return true;
         }
 
-        // GET: api/RegisterCustomer/5
-        public string Get(int id)
+
+        // 
+        /// <summary>
+        /// Permite obtener la información de un cliente(Customer) especifíco usando como criterio su identificación
+        /// Ruta para acceso: GET: api/RegisterCustomer/5
+        /// </summary>
+        /// <param name="documentCustomer">Documento de identificación del cliente (Customer)</param>
+        /// <returns>JSON con la información del cliente solicitado</returns>
+        public string Get(string documentCustomer)
         {
+            Customer customer = controlGetCustomer.GetCustomer(documentCustomer);
             return "value";
         }
 
-        // POST: api/RegisterCustomer
+
+        /// <summary>
+        /// Responde a una solicitud de registro de un cliente (Customer), gestiona el registro del usuario en la base de datos
+        /// Ruta para accesar: api/RegisterCustomer
+        /// </summary>
+        /// <param name="dataCustomer">JSON con los datos del cliente (Customer) a registrar</param>
+        /// <returns>Verdadero si el registro fué exitoso, Falso de lo contrario</returns>
+        [System.Web.Http.HttpPost]
         public bool Post(JObject dataCustomer)
         {
             var condition = controlRegister.RegisterCostumer(dataCustomer);
             return condition;
         }
-
-        // PUT: api/RegisterCustomer/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/RegisterCustomer/5
-        public void Delete(int id)
-        {
-        }
+      
     }
 }
