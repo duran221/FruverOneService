@@ -41,11 +41,11 @@ namespace APIFruverOne.APIRestService
                     JObject.FromObject( new { 
                         
                         COD = listProduct[n].COD,
-                        nombre = listProduct[n].Nombre,
-                        descripcion = listProduct[n].Descripcion,
-                        cantidad = listProduct[n].Cantidad,
-                        precio = listProduct[n].Precio,
-                        total = listProduct[n].calcularTotalInventarioPesos()
+                        Nombre = listProduct[n].Nombre,
+                        Descripcion = listProduct[n].Descripcion,
+                        Cantidad = listProduct[n].Cantidad,
+                        Precio = listProduct[n].Precio,
+                        Total = listProduct[n].calcularTotalInventarioPesos()
                     })
                  );
             }
