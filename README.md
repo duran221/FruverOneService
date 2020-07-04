@@ -1,3 +1,5 @@
 # FruverOneService
 Servicio web de la tienda Online FruverOne.
-Base de Datos: PostgreSQL
+Funcionamiento de:
+  * Listar producto
+  * Eliminar producto
