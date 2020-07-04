@@ -8,11 +8,11 @@ namespace Domain.EntidadesDelDominio.Entidades
 {
     public class Producto
     {
-        private String COD { get; }
-        private String Nombre { get; }
-        private String Descripcion { get; }
-        private int Cantidad { get; }
-        private float Precio { get; }
+        public String COD { get; }
+        public String Nombre { get; }
+        public String Descripcion { get; }
+        public int Cantidad { get; }
+        public float Precio { get; }
 
         public Producto(String COD, String Nombre, String Descripcion, int Cantidad, float Precio) {
             this.COD = COD;
@@ -22,7 +22,7 @@ namespace Domain.EntidadesDelDominio.Entidades
             this.Precio = Precio;
         }
 
-        protected float calcularTotalInventarioPesos() {
+        public float calcularTotalInventarioPesos() {
 
             float inventario = this.Cantidad * this.Precio;
             return inventario;

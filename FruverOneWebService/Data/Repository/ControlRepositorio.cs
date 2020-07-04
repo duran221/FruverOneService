@@ -1,13 +1,10 @@
 ﻿using Data.ControlRepository;
 using Npgsql;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
 
 namespace Data.Repository
 {
-    class ControlRepositorio : IGestionInformacion
+    public class ControlRepositorio : IGestionInformacion
     {
         private readonly Conexion conection;
 
@@ -28,11 +25,12 @@ namespace Data.Repository
         {
             try
             {
-                var conectDb = conection.ConnectDb();
+              
+                NpgsqlConnection conectionBD = conection.ConnectDb();
 
-                NpgsqlCommand command = new NpgsqlCommand(query, conectDb);
-                
+                NpgsqlCommand command = new NpgsqlCommand(query, conectionBD);
                 command.ExecuteNonQuery();
+
                 conection.CloseConectionDb(); 
                 return true;
 
@@ -51,25 +49,28 @@ namespace Data.Repository
         /// </summary>
         /// <param name="query">Cadena con la consulta Sql a Ejecutar</param>
         /// <returns>Conjunto de datos encontrados en la consulta sql</returns>
-        public DataTable ResolveQuerySelect(string query)
+        public NpgsqlDataReader ResolveQuerySelect(string query)
         {
-            DataSet datos = new DataSet();
+
+            NpgsqlConnection conectDb = conection.ConnectDb();
             try
             {
-                var conectDb = conection.ConnectDb();
+
                 NpgsqlDataAdapter response = new NpgsqlDataAdapter(query, conectDb);
-                response.Fill(datos);
-              
-                conection.CloseConectionDb();
-                return datos.Tables[0];
+                NpgsqlCommand comand = new NpgsqlCommand(query, conectDb);
+                NpgsqlDataReader read = comand.ExecuteReader();
+                
+              ///  conection.CloseConectionDb();
+                
+                return read;
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-              
-                return new DataTable();
+            catch (Exception e) {
+                Console.WriteLine("Error en la conexión"+ e.Message);
+                return null;
             }
 
+
+                
         }
 
         /// <summary>

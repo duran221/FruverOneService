@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Data.ControlRepository
 {
-    interface IConexion
+    public interface IConexion
     {
         /// <summary>
         /// Permite establecer una conexión a la base de datos PostgreSQL

@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 using Domain.EntidadesDelDominio.Entidades;
 
-namespace Business.ControlRepositorio
+namespace Business.ILogicaNegocio
 {
     public interface IControlListadoProductos
     {
         List<Producto> ListarProductos();
         bool EliminarProducto(String COD);
         bool ActualizarProducto(String COD, String Nombre, String Descripcion, int Cantidad, float Precio);
+
+        float Inventario();
     }
 }
