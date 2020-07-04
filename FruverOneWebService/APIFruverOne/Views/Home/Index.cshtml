@@ -31,10 +31,9 @@
                     <td>@Model.productos[i].Precio</td>
                     <td>@Model.productos[i].Total</td>
                     <td>
-                        <button type="button" class="btn btn-danger" name=@Model.productos[i].COD>Eliminar</button>
-
+                        <button type="button" onclick="Eliminar(@Model.productos[i].COD);" class="btn btn-danger" value="Eliminar">Eliminar</button>
+                    
                     </td>
-
                 </tr>
                 
                 }
@@ -43,3 +42,26 @@
         </table>
     </div>
 </div>
+
+
+<script>
+
+    function Eliminar(COD) {
+        var URL = "https://localhost:44304/api/ListarProductos?COD=" + COD;
+        $.post(URL, function (data) {
+
+            if (data) {
+                alert("Se eliminó correctamente");
+
+                document.location.href = "https://localhost:44304/";
+            } else {
+                alert("Falla al eliminar");
+            }
+        })
+
+    }
+
+
+
+
+</script>
