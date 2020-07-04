@@ -31,7 +31,7 @@ namespace APIFruverOne.Controllers
         }*/
 
         // DELETE: api/EliminarProducto
-        [HttpDelete]
+        [HttpPost]
         public bool Delete(String COD)
         {
             return control.eliminarProducto(COD);
