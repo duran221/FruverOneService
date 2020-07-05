@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Web.Http;
 using Business.Control;
 using Domain.Class;
@@ -55,10 +54,11 @@ namespace APIFruverOne.Controllers
         /// <param name="dataCustomer">JSON con los datos del cliente (Customer) a registrar</param>
         /// <returns>Verdadero si el registro fué exitoso, Falso de lo contrario</returns>
         [System.Web.Http.HttpPost]
-        public bool Post(JObject dataCustomer)
+        public IHttpActionResult Post(JObject dataCustomer)
         {
             var condition = controlRegister.RegisterCostumer(dataCustomer);
-            return condition;
+
+            return condition ? Ok("True"): Ok("False");
         }
       
     }

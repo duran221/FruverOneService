@@ -11,20 +11,30 @@ namespace FruverOneWebClient.Models
     {
 
         [Required]
+        [MaxLength(length: 12)]
         public string Document { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "No te olvides del nombre")]
+        [MaxLength(length: 12)]
         public string Name { get; set; }
+
         [Required]
+        [MaxLength(length: 12)]
         public string LastName { get; set; }
-        [Required]
+
+        [DataType(DataType.PhoneNumber)]
         public long PhoneNumber { get; set; }
         [Required]
         public string Address { get; set; }
+
+        [EmailAddress]
         [Required]
         public string Email { get; set; }
-
         [PasswordPropertyText]
         [Required]
         public string Password { get; set; }
+
+        [Compare("Password",ErrorMessage = "Las contraseñas no coinciden")]
+        public string PasswordConfirmation { get; set; }
     }
 }

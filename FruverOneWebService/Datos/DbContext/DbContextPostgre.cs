@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Datos.Interface;
 
 //Import necesarios para la conexión a la base de datos de PostgreSQL.
 using Npgsql;
-using NpgsqlTypes;
 
 namespace Datos.DbContext
 {
-    public class DbContextPostgre : Conexion
+    public class DbContextPostgre : IConexion
     {
         //Parámetros necesarios para realizar la conexion a la base de datos:
         private const string server = "localhost";

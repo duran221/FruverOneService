@@ -37,7 +37,6 @@ namespace Business.Control
 
             bool requestUserAccount = this.RegisterUserAccount(dataCustomer);
 
-
             return requestCustomer && requestUserAccount;
 
         }
@@ -64,22 +63,28 @@ namespace Business.Control
         {
             return new UserAccount()
             {
-                Email= dataCustomer["email"].ToString(),
-                Password = dataCustomer["password"].ToString(),
-                DocumentCustomer= dataCustomer["document"].ToString()
+                Email= dataCustomer["Email"].ToString(),
+                Password = dataCustomer["Password"].ToString(),
+                DocumentCustomer= dataCustomer["Document"].ToString()
             };
 
         }
 
         private Customer CreateModelCustomer(JObject dataCustomer)
         {
+            string Document = dataCustomer["Document"].ToString();
+            string Name = dataCustomer["Name"].ToString();
+            string LastName = dataCustomer["LastName"].ToString();
+            long PhoneNumber = Convert.ToInt64(dataCustomer["PhoneNumber"].ToString());
+            string Address = dataCustomer["Address"].ToString();
+
             return new Customer()
             {
-                Document = dataCustomer["document"].ToString(),
-                Name = dataCustomer["name"].ToString(),
-                LastName = dataCustomer["lastname"].ToString(),
-                PhoneNumber = Convert.ToInt64(dataCustomer["phonenumber"].ToString()),
-                Address = dataCustomer["address"].ToString()
+                Document = dataCustomer["Document"].ToString(),
+                Name = dataCustomer["Name"].ToString(),
+                LastName = dataCustomer["LastName"].ToString(),
+                PhoneNumber = Convert.ToInt64(dataCustomer["PhoneNumber"].ToString()),
+                Address = dataCustomer["Address"].ToString()
             };
 
         }

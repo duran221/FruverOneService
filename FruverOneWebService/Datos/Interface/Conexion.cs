@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Datos.Interface
 {
-    public interface Conexion
+    public interface IConexion
     {
 
         /// <summary>

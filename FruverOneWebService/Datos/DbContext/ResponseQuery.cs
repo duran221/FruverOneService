@@ -12,7 +12,7 @@ namespace Datos.DbContext
 {
     public class ResponseQuery
     {
-        private readonly Conexion conection;
+        private readonly IConexion conection;
 
 
         public ResponseQuery()
@@ -32,8 +32,10 @@ namespace Datos.DbContext
         {
             try
             {
+                //Se abre la conexión a la base de datos
                 var conectDb=conection.ConnectDb();
 
+                //Se instancia el objeto que permite ejecutar la consulta en la base de datos
                 NpgsqlCommand command = new NpgsqlCommand(query,conectDb);
                 //Ejecuta la consulta sql en la base de datos
                 command.ExecuteNonQuery();
@@ -71,6 +73,7 @@ namespace Datos.DbContext
                 response.Fill(datos);
                 //Cierro la conexión con la base de datos:
                 conection.CloseConectionDb();
+                //Retorno la tabla resultante de la consulta:
                 return datos.Tables[0];
             }
             catch (Exception ex)

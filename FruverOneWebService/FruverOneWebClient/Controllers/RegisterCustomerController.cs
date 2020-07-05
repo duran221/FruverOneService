@@ -1,9 +1,6 @@
 ﻿using FruverOneWebClient.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+
 
 namespace FruverOneWebClient.Controllers
 {
@@ -46,9 +43,20 @@ namespace FruverOneWebClient.Controllers
             try
             {
                 // TODO: Add insert logic here
-
-                ViewBag.Message = "El registro ha sido exitoso";
-                return Details(customer.Document);
+                const string urlWebService= "http://localhost:63659/api/RegisterCustomer/";
+                var responseServer = RequestAPI.Request.Send<CustomerTemplate>(urlWebService, customer);
+                string codeResponse = responseServer.Data.ToString().Replace("\"","");
+                if (codeResponse.Equals("True"))
+                {
+                    ViewBag.Message = "El registro ha sido exitoso";
+                    return Details(customer.Document);
+                }
+                else
+                {
+                    ViewBag.Message = "El registro no creado, aségurese de que su email no esté previamente registrado o que su documento";
+                    return Index();
+                }
+                
             }
             catch
             {
