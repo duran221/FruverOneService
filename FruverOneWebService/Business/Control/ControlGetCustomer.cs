@@ -24,7 +24,7 @@ namespace Business.Control
         public List<Customer> GetCustomers()
         {
             List<Customer> listCustomers = new List<Customer>();
-            const string commandSql = "SELECT * FROM PUBLIC.\"Customer\"";
+            const string commandSql = "SELECT * FROM \"Customer\"";
 
             var data = query.ResolveQuerySelect(commandSql);
             foreach (DataRow row in data.Rows)
@@ -52,7 +52,29 @@ namespace Business.Control
         /// si el cliente no existe se retorna un objeto con atributos vacios</returns>
         public Customer GetCustomer(string documentCustomer)
         {
-            return new Customer();
+            
+            string commandSql = $"SELECT * FROM \"Customer\" WHERE document_customer='{documentCustomer}'";
+
+            var data = query.ResolveQuerySelect(commandSql);
+
+            Customer customer= new Customer();
+            foreach (DataRow row in data.Rows)
+            {
+                customer = new Customer()
+                {
+                    Document = row.Field<string>(data.Columns[0]),
+                    Name = row.Field<string>(data.Columns[1]),
+                    LastName = row.Field<string>(data.Columns[2]),
+                    PhoneNumber = (long)row.Field<decimal>(data.Columns[3]),
+                    Address = row.Field<string>(data.Columns[4])
+                };
+
+                
+            }
+            return customer;
+
+
+
         }
 
     }

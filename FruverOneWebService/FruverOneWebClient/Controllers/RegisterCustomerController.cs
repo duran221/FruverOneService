@@ -1,4 +1,5 @@
 ﻿using FruverOneWebClient.Models;
+using Newtonsoft.Json.Linq;
 using System.Web.Mvc;
 
 
@@ -26,6 +27,10 @@ namespace FruverOneWebClient.Controllers
         /// <returns>Vista con los detalles del cliente Registrado</returns>
         public ActionResult Details(string documentCustomer)
         {
+
+            string urlWebService = $"http://localhost:63659/api/RegisterCustomer?documentCustomer={documentCustomer}";
+            string method = "GET";
+            var responseServer = RequestAPI.Request.Send<JObject>(urlWebService, null,method);
             return View("DetailsCustomer");
         }
 

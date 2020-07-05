@@ -40,10 +40,10 @@ namespace APIFruverOne.Controllers
         /// </summary>
         /// <param name="documentCustomer">Documento de identificación del cliente (Customer)</param>
         /// <returns>JSON con la información del cliente solicitado</returns>
-        public string Get(string documentCustomer)
+        public IHttpActionResult Get(string documentCustomer)
         {
             Customer customer = controlGetCustomer.GetCustomer(documentCustomer);
-            return "value";
+            return Ok(customer);
         }
 
 

@@ -10,7 +10,7 @@ namespace FruverOneWebClient.RequestAPI
     {
 
         /// <summary>
-        /// 
+        /// Genera y envia una solicitud http a el servicio web de la plataforma APIFruverOne
         /// </summary>
         /// <typeparam name="T">View Model que se va a enviar al web Service</typeparam>
         /// <param name="url">Dirección del servicio web al cual se realiza la petición</param>
@@ -46,10 +46,10 @@ namespace FruverOneWebClient.RequestAPI
         }
 
         /// <summary>
-        /// 
+        /// Lee y almacena en una cadena la respuesta devuelta por el servicio web
         /// </summary>
-        /// <param name="httpResponse"></param>
-        /// <returns></returns>
+        /// <param name="httpResponse">Objeto http recibido como respuesta del servicio web</param>
+        /// <returns>Cadena de texto con la respuesta del servicio</returns>
         private static string LeerArchivo(HttpWebResponse httpResponse)
         {
             string result;
@@ -61,6 +61,13 @@ namespace FruverOneWebClient.RequestAPI
             return result;
         }
 
+        /// <summary>
+        /// Crea una solicitud HttpRequest con los atributos necesarios para ser enviada al WebService
+        /// </summary>
+        /// <param name="url">dirección del servicio web al cual se realiza la petición</param>
+        /// <param name="method">el tipo de petición que se realiza, puede ser GET,POST,PUT,DELETE</param>
+        /// <param name="json">Cadena con la Información que se desea enviar al WebService</param>
+        /// <returns></returns>
         private static WebRequest CrearRequest(string url, string method, string json)
         {
             //Instanciación del objeto que me permite realizar la petición a el web service (http).
@@ -78,18 +85,21 @@ namespace FruverOneWebClient.RequestAPI
 
         
         /// <summary>
-        /// 
+        /// Escribe la cadena JSON dentro de la solicitud Http que será enviada al WebService
         /// </summary>
-        /// <param name="json"></param>
-        /// <param name="request"></param>
-        /// <returns></returns>
+        /// <param name="json">Cadena con los datos del objeto a incluir en la solicitud</param>
+        /// <param name="request">Solicitud Http que será enviada al WebService</param>
+        /// <returns>Solicitud Http con la información del Json contenido</returns>
         private static WebRequest  EscribirArchivo(string json, WebRequest request)
         {
-            using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+            if (json != "null")
             {
-                streamWriter.Write(json);
-                //Cerrando la escritura del archivo:
-                streamWriter.Flush();
+                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                {
+                    streamWriter.Write(json);
+                    //Cerrando la escritura del archivo:
+                    streamWriter.Flush();
+                }
             }
 
             return request;

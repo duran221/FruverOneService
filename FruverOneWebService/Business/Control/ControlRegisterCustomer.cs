@@ -29,7 +29,7 @@ namespace Business.Control
         {
             Customer customer = this.CreateModelCustomer(dataCustomer);
 
-            string commandSql = "INSERT INTO public.\"Customer\" VALUES" +
+            string commandSql = "INSERT INTO \"Customer\" VALUES" +
                                 $"('{customer.Document}','{customer.Name}','{customer.LastName}','{customer.PhoneNumber}'," +
                                 $"'{customer.Address}')";
 
@@ -72,12 +72,6 @@ namespace Business.Control
 
         private Customer CreateModelCustomer(JObject dataCustomer)
         {
-            string Document = dataCustomer["Document"].ToString();
-            string Name = dataCustomer["Name"].ToString();
-            string LastName = dataCustomer["LastName"].ToString();
-            long PhoneNumber = Convert.ToInt64(dataCustomer["PhoneNumber"].ToString());
-            string Address = dataCustomer["Address"].ToString();
-
             return new Customer()
             {
                 Document = dataCustomer["Document"].ToString(),
