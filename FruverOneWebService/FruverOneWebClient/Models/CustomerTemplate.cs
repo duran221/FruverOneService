@@ -15,11 +15,11 @@ namespace FruverOneWebClient.Models
         public string Document { get; set; }
 
         [Required(ErrorMessage = "No te olvides del nombre")]
-        [MaxLength(length: 12)]
+        [MaxLength(length: 50)]
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(length: 12)]
+        [MaxLength(length: 50)]
         public string LastName { get; set; }
 
         [DataType(DataType.PhoneNumber)]

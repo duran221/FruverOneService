@@ -1,10 +1,4 @@
 ﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Datos.DbContext;
 using Domain.Class;
@@ -59,6 +53,11 @@ namespace Business.Control
 
         }
 
+        /// <summary>
+        /// Construye un objeto de tipo UserAccount, a partir de un archivo JSON
+        /// </summary>
+        /// <param name="dataCustomer">JSON con la información ingresada por el cliente</param>
+        /// <returns>objeto UserAccount con todos sus atributos</returns>
         private UserAccount CreateModelAccount(JObject dataCustomer)
         {
             return new UserAccount()
@@ -70,6 +69,11 @@ namespace Business.Control
 
         }
 
+        /// <summary>
+        ///  Construye un objeto de tipo Customer, a partir de un archivo JSON 
+        /// </summary>
+        /// <param name="dataCustomer">JSON con la información ingresada por el cliente</param>
+        /// <returns>objeto Customer con todos sus atributos</returns>
         private Customer CreateModelCustomer(JObject dataCustomer)
         {
             return new Customer()

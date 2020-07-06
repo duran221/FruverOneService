@@ -1,4 +1,5 @@
 ﻿using FruverOneWebClient.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Web.Mvc;
 
@@ -30,8 +31,12 @@ namespace FruverOneWebClient.Controllers
 
             string urlWebService = $"http://localhost:63659/api/RegisterCustomer?documentCustomer={documentCustomer}";
             string method = "GET";
+            //Se envia la petición al Web Service solicitando los datos del usuario creado
             var responseServer = RequestAPI.Request.Send<JObject>(urlWebService, null,method);
-            return View("DetailsCustomer");
+            string codeResponse = responseServer.Data.ToString();
+            //Serializamos la cadena JSON recibida por el web service en un objeto tipo CustomerTemplate
+            CustomerTemplate customerModel= JsonConvert.DeserializeObject<CustomerTemplate>(codeResponse);
+            return View("DetailsCustomer",customerModel);
         }
 
 
@@ -47,7 +52,6 @@ namespace FruverOneWebClient.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
                 const string urlWebService= "http://localhost:63659/api/RegisterCustomer/";
                 var responseServer = RequestAPI.Request.Send<CustomerTemplate>(urlWebService, customer);
                 string codeResponse = responseServer.Data.ToString().Replace("\"","");
@@ -60,8 +64,7 @@ namespace FruverOneWebClient.Controllers
                 {
                     ViewBag.Message = "El registro no creado, aségurese de que su email no esté previamente registrado o que su documento";
                     return Index();
-                }
-                
+                }        
             }
             catch
             {
