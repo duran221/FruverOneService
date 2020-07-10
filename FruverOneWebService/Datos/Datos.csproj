@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{662B3D3C-FD77-4FEE-8BBB-08B0F6C554A2}</ProjectGuid>
+    <ProjectGuid>{7AE30412-93CC-4408-A6EB-B5D9F724E4A8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Domain</RootNamespace>
-    <AssemblyName>Domain</AssemblyName>
+    <RootNamespace>Datos</RootNamespace>
+    <AssemblyName>Datos</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -72,9 +72,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class\Customer.cs" />
-    <Compile Include="Class\Producto.cs" />
-    <Compile Include="Class\UserAccount.cs" />
+    <Compile Include="DbContext\DbContextPostgre.cs" />
+    <Compile Include="DbContext\ResponseQuery.cs" />
+    <Compile Include="Interface\Conexion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
