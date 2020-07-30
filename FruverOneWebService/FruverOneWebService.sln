@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIFruverOne", "APIFruverOne\APIFruverOne.csproj", "{784A7DEF-E0EA-421F-BF98-EA5FEC509D18}"
-	ProjectSection(ProjectDependencies) = postProject
-		{E8C6B138-13E6-4CEE-BFE7-ECA633AC517C} = {E8C6B138-13E6-4CEE-BFE7-ECA633AC517C}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{E8C6B138-13E6-4CEE-BFE7-ECA633AC517C}"
 EndProject

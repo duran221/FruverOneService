@@ -1,5 +1,4 @@
-﻿using APIFruverOne.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,10 +12,7 @@ namespace APIFruverOne.Controllers
         {
             ViewBag.Title = "Home Page";
 
-            ListaProductos miLista  = new ListaProductos();
-          //  List<Producto> resp = miLista.productos;
-
-            return View(miLista);
+            return View();
         }
     }
 }
