@@ -34,6 +34,9 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Npgsql, Version=4.1.3.1, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>..\packages\Npgsql.4.1.3.1\lib\net461\Npgsql.dll</HintPath>
     </Reference>
@@ -72,25 +75,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControlRepositorioNegocio\ControlListarProductos.cs" />
-    <Compile Include="ILogicaNegocio\IControlListadoProductos.cs" />
+    <Compile Include="Control\ControlGetCustomer.cs" />
+    <Compile Include="Control\ControlRegisterCustomer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ControlExcepciones\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Data\Data.csproj">
-      <Project>{bcaf912e-9d3f-44c0-bfed-034429f89934}</Project>
-      <Name>Data</Name>
+    <ProjectReference Include="..\Datos\Datos.csproj">
+      <Project>{7ae30412-93cc-4408-a6eb-b5d9f724e4a8}</Project>
+      <Name>Datos</Name>
     </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{662b3d3c-fd77-4fee-8bbb-08b0f6c554a2}</Project>
       <Name>Domain</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
+    <ProjectReference Include="..\ErrorLog\ErrorLog.csproj">
+      <Project>{4d164506-ddef-4492-8b9a-9c8605019d5c}</Project>
+      <Name>ErrorLog</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

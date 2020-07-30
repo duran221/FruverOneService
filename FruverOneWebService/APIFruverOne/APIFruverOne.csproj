@@ -59,8 +59,13 @@
       <HintPath>..\packages\RestSharp.106.11.4\lib\net452\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+<<<<<<< HEAD
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+=======
+    <Reference Include="System.Composition.AttributedModel, Version=1.0.35.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Composition.AttributedModel.1.4.1\lib\net461\System.Composition.AttributedModel.dll</HintPath>
+>>>>>>> master
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -244,7 +249,11 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\ListarProductosController.cs" />
+=======
+    <Compile Include="Controllers\RegisterCustomerController.cs" />
+>>>>>>> master
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -317,6 +326,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Util\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -353,7 +363,11 @@
       <Name>Business</Name>
     </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
+<<<<<<< HEAD
       <Project>{662B3D3C-FD77-4FEE-8BBB-08B0F6C554A2}</Project>
+=======
+      <Project>{662b3d3c-fd77-4fee-8bbb-08b0f6c554a2}</Project>
+>>>>>>> master
       <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
