@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\Customer.cs" />
+    <Compile Include="Class\ListProduct.cs" />
+    <Compile Include="Class\Product.cs" />
     <Compile Include="Class\UserAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

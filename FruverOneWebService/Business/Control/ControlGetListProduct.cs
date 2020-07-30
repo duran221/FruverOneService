@@ -1,35 +1,32 @@
-﻿using DBData.DbContext;
+﻿using Business.IControl;
+using Datos.DbContext;
 using Domain.Class;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Business.Control
 {
-    public class ControlGetListProduct
+    public class ControlGetListProduct : IControlGetListProduct
     {
-
         readonly ResponseQuery query;
         public ListProduct myList;
         public ControlGetListProduct()
         {
             this.query = new ResponseQuery();
             myList = new ListProduct();
-            this.fruties();
-            this.vegetals();
-            //this.stars();
-            
         }
 
-
+        /// <summary>
+        /// Mostrar Objeto JSON con el listado de frutas
+        /// </summary>
+        /// <returns>JSON</returns>
         public List<JObject> getFruties() {
-
+            this.fruits();
             List<JObject> productosJSONF = new List<JObject>();
-            List<Product> frutas = myList.fruty;
+            List<Product> frutas = myList.fruit;
 
             for (int n = 0; n < frutas.Count; n++)
             {
@@ -39,7 +36,7 @@ namespace Business.Control
                          COD = frutas[n].cod_product,
                          Name = frutas[n].name,
                          Description = frutas[n].description,
-                         Price = frutas[n].preci,
+                         Price = frutas[n].price,
                          Quantity = frutas[n].quantity,
                          Discount = frutas[n].discount,
                          IVA = frutas[n].iva,
@@ -47,15 +44,18 @@ namespace Business.Control
                      })
                   );
             }
-
             return productosJSONF;
-
         }
-
+        /// <summary>
+        /// Mostrar Objeto JSON con el listado de vegetales
+        /// </summary>
+        /// <returns>JSON</returns>
         public List<JObject> getVegetals()
         {
+            this.vegetals();
+
             List<JObject> productosJSONF = new List<JObject>();
-            List<Product> vegetals= myList.vegetal;
+            List<Product> vegetals = myList.vegetal;
 
             for (int n = 0; n < vegetals.Count; n++)
             {
@@ -65,7 +65,7 @@ namespace Business.Control
                          COD = vegetals[n].cod_product,
                          Name = vegetals[n].name,
                          Description = vegetals[n].description,
-                         Price = vegetals[n].preci,
+                         Price = vegetals[n].price,
                          Quantity = vegetals[n].quantity,
                          Discount = vegetals[n].discount,
                          IVA = vegetals[n].iva,
@@ -75,9 +75,13 @@ namespace Business.Control
             }
             return productosJSONF;
         }
-
+        /// <summary>
+        /// Mostrar Objeto JSON con el listado de productos estrella
+        /// </summary>
+        /// <returns>JSON</returns>
         public List<JObject> getStar()
         {
+            this.stars();
             List<JObject> productosJSONF = new List<JObject>();
             List<Product> star = myList.productStar;
 
@@ -89,7 +93,7 @@ namespace Business.Control
                          COD = star[n].cod_product,
                          Name = star[n].name,
                          Description = star[n].description,
-                         Price = star[n].preci,
+                         Price = star[n].price,
                          Quantity = star[n].quantity,
                          Discount = star[n].discount,
                          IVA = star[n].iva,
@@ -100,77 +104,75 @@ namespace Business.Control
             return productosJSONF;
         }
 
-
-
-
-
-
-
-
-        private void fruties()
-        { 
+        /// <summary>
+        /// Construimos nuestra lista de frutas con base al acceso a la base de datos
+        /// </summary>
+        private void fruits()
+        {
             const string commandSql = "SELECT * FROM \"frutas\"";
 
             var data = query.ResolveQuerySelect(commandSql);
             foreach (DataRow row in data.Rows)
             {
-                myList.addFruty(new Product(
-                    row.Field<string>(data.Columns[0]).Trim(), //cod
-                    row.Field<string>(data.Columns[1]).Trim(), //name
-                    row.Field<string>(data.Columns[3]).Trim(), //description
-                    float.Parse(row.Field<string>(data.Columns[4]).Trim()), //preci
-                    int.Parse(row.Field<string>(data.Columns[5]).Trim()), //quantity
-                    float.Parse(row.Field<string>(data.Columns[6]).Trim()), //discount
-                    float.Parse(row.Field<string>(data.Columns[7]).Trim()), //iva
-                     (row.Field<string>(data.Columns[8]).Trim()) //image_url
-                    ));
+                string cod_product = row.Field<string>(data.Columns[0]).Trim();
+                string name = row.Field<string>(data.Columns[2]).Trim();
+                string description = row.Field<string>(data.Columns[3]).Trim();
+                int price = row.Field<Int32>(data.Columns[4]);
+                int quantity = row.Field<Int32>(data.Columns[8]);
+                float discount = float.Parse(row.Field<Decimal>(data.Columns[5]).ToString());
+                float iva = float.Parse(row.Field<Decimal>(data.Columns[6]).ToString());
+                string image_url = row.Field<string>(data.Columns[7]).Trim();
+
+                bool addList = myList.addFruit(new Product(cod_product, name, description, price, quantity, discount, iva, image_url));
+
             }
 
         }
+        /// <summary>
+        /// Construimos nuestra lista de vegetales con base al acceso a la base de datos
+        /// </summary>
 
         private void vegetals()
         {
-
-              const string commandSql = "SELECT * FROM \"vegetales\"";
+            const string commandSql = "SELECT * FROM \"vegetales\"";
 
             var data = query.ResolveQuerySelect(commandSql);
             foreach (DataRow row in data.Rows)
             {
-                myList.addFruty(new Product(
-                    row.Field<string>(data.Columns[0]).Trim(), //cod
-                    row.Field<string>(data.Columns[1]).Trim(), //name
-                    row.Field<string>(data.Columns[3]).Trim(), //description
-                    float.Parse(row.Field<string>(data.Columns[4]).Trim()), //preci
-                    int.Parse(row.Field<string>(data.Columns[5]).Trim()), //quantity
-                    float.Parse(row.Field<string>(data.Columns[6]).Trim()), //discount
-                    float.Parse(row.Field<string>(data.Columns[7]).Trim()), //iva
-                     (row.Field<string>(data.Columns[8]).Trim()) //image_url
-                    ));
+                string cod_product = row.Field<string>(data.Columns[0]).Trim();
+                string name = row.Field<string>(data.Columns[2]).Trim();
+                string description = row.Field<string>(data.Columns[3]).Trim();
+                int price = row.Field<Int32>(data.Columns[4]);
+                int quantity = row.Field<Int32>(data.Columns[8]);
+                float discount = float.Parse(row.Field<Decimal>(data.Columns[5]).ToString());
+                float iva = float.Parse(row.Field<Decimal>(data.Columns[6]).ToString());
+                string image_url = row.Field<string>(data.Columns[7]).Trim();
+
+                bool addList = myList.addVegetal(new Product(cod_product, name, description, price, quantity, discount, iva, image_url));
             }
+             
 
-           
         }
-
+        /// <summary>
+        /// Construimos nuestra lista de productos estrellas con base al acceso a la base de datos
+        /// </summary>
         private void stars()
         {
             const string commandSql = "SELECT * FROM \"star\"";
-
             var data = query.ResolveQuerySelect(commandSql);
             foreach (DataRow row in data.Rows)
             {
-                myList.addFruty(new Product(
-                    row.Field<string>(data.Columns[0]).Trim(), //cod
-                    row.Field<string>(data.Columns[1]).Trim(), //name
-                    row.Field<string>(data.Columns[3]).Trim(), //description
-                    float.Parse(row.Field<string>(data.Columns[4]).Trim()), //preci
-                    int.Parse(row.Field<string>(data.Columns[5]).Trim()), //quantity
-                    float.Parse(row.Field<string>(data.Columns[6]).Trim()), //discount
-                    float.Parse(row.Field<string>(data.Columns[7]).Trim()), //iva
-                     (row.Field<string>(data.Columns[8]).Trim()) //image_url
-                    ));
-            }
+                string cod_product = row.Field<string>(data.Columns[0]).Trim();
+                string name = row.Field<string>(data.Columns[2]).Trim();
+                string description = row.Field<string>(data.Columns[3]).Trim();
+                int price = row.Field<Int32>(data.Columns[4]);
+                int quantity = row.Field<Int32>(data.Columns[8]);
+                float discount = float.Parse(row.Field<Decimal>(data.Columns[5]).ToString());
+                float iva = float.Parse(row.Field<Decimal>(data.Columns[6]).ToString());
+                string image_url = row.Field<string>(data.Columns[7]).Trim();
 
-          
+                bool addList = myList.addProductStar(new Product(cod_product, name, description, price, quantity, discount, iva, image_url));
+            }
         }
 
 
