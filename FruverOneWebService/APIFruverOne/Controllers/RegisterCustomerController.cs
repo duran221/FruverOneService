@@ -42,7 +42,8 @@ namespace APIFruverOne.Controllers
         /// <returns>JSON con la información del cliente solicitado</returns>
         public IHttpActionResult Get(string documentCustomer)
         {
-            Customer customer = controlGetCustomer.GetCustomer(documentCustomer);
+            long document = Int64.Parse(documentCustomer);
+            Customer customer = controlGetCustomer.GetCustomer(document);
             return Ok(customer);
         }
 
@@ -58,7 +59,7 @@ namespace APIFruverOne.Controllers
         {
             var condition = controlRegister.RegisterCostumer(dataCustomer);
 
-            return condition ? Ok("True"): Ok("False");
+            return condition ? Ok("200"): Ok("400");
         }
       
     }

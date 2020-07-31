@@ -1,5 +1,7 @@
 ﻿using Datos.DbContext;
 using Domain.Class;
+using Domain.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -24,19 +26,13 @@ namespace Business.Control
         public List<Customer> GetCustomers()
         {
             List<Customer> listCustomers = new List<Customer>();
-            const string commandSql = "SELECT * FROM \"Customer\"";
+            const string commandSql = "SELECT document FROM customers";
 
             var data = query.ResolveQuerySelect(commandSql);
             foreach (DataRow row in data.Rows)
             {
-                listCustomers.Add(new Customer()
-                {
-                    Document = row.Field<string>(data.Columns[0]),
-                    Name = row.Field<string>(data.Columns[1]),
-                    LastName = row.Field<string>(data.Columns[2]),
-                    PhoneNumber = (long)row.Field<decimal>(data.Columns[3]),
-                    Address = row.Field<string>(data.Columns[4])
-                });
+                long document = Int64.Parse(row.Field<string>(data.Columns[0]));
+                listCustomers.Add(this.GetCustomer(document));
 
             }
 
@@ -50,10 +46,10 @@ namespace Business.Control
         /// <param name="documentCustomer">Documento del cliente (Customer)</param>
         /// <returns>Objeto Customer con la información del cliente consultado, 
         /// si el cliente no existe se retorna un objeto con atributos vacios</returns>
-        public Customer GetCustomer(string documentCustomer)
+        public Customer GetCustomer(long documentCustomer)
         {
             
-            string commandSql = $"SELECT * FROM \"Customer\" WHERE document_customer='{documentCustomer}'";
+            string commandSql = $"SELECT * FROM customers WHERE document='{documentCustomer}'";
 
             var data = query.ResolveQuerySelect(commandSql);
 
@@ -62,19 +58,17 @@ namespace Business.Control
             {
                 customer = new Customer()
                 {
-                    Document = row.Field<string>(data.Columns[0]),
+                    Document = Int64.Parse(row.Field<string>(data.Columns[0])),
                     Name = row.Field<string>(data.Columns[1]),
                     LastName = row.Field<string>(data.Columns[2]),
-                    PhoneNumber = (long)row.Field<decimal>(data.Columns[3]),
-                    Address = row.Field<string>(data.Columns[4])
+                    PhoneNumber = row.Field<string>(data.Columns[3]),
+                    Email = row.Field<string>(data.Columns[4]),
+                    NameOrganization = row.Field<string>(data.Columns[5]),
+                    ZipCode = row.Field<string>(data.Columns[6]),
+                    Address = row.Field<string>(data.Columns[7])
                 };
-
-                
             }
             return customer;
-
-
-
         }
 
     }
