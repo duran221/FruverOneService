@@ -12,7 +12,7 @@ namespace Datos.DbContext
         private const string server = "localhost";
         private const string port = "5432";
         private const string userId = "postgres";
-        private const string password = "6885";
+        private const string password = "9294";
         private const string dataBase = "FruverOne";
 
 
