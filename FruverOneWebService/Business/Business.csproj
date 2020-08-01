@@ -77,6 +77,7 @@
   <ItemGroup>
     <Compile Include="Control\ControlCartDetails.cs" />
     <Compile Include="Control\ControlGetCustomer.cs" />
+<<<<<<< HEAD
     <Compile Include="Control\ControlOrden.cs" />
     <Compile Include="Control\ControlRegisterCustomer.cs" />
     <Compile Include="Control\ControlCart.cs" />
@@ -84,6 +85,11 @@
     <Compile Include="IControl\IControlCartDetails.cs" />
     <Compile Include="IControl\IControlOrder.cs" />
     <Compile Include="IControl\IControlOrderDetails.cs" />
+=======
+    <Compile Include="Control\ControlGetListProduct.cs" />
+    <Compile Include="Control\ControlRegisterCustomer.cs" />
+    <Compile Include="IControl\IControlGetListProduct.cs" />
+>>>>>>> e90095af8d90d1403fda1c6e130038b1f1c878fd
     <Compile Include="IControl\IControlRegisterCostumer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
