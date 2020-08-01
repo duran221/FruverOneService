@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Web.Mvc;
-
+using FruverOneWebClient.Util;
 
 namespace FruverOneWebClient.Controllers
 {
@@ -53,9 +53,11 @@ namespace FruverOneWebClient.Controllers
             try
             {
                 const string urlWebService= "http://localhost:63659/api/RegisterCustomer/";
+                //Cifre la contraseña en SHA256
+                customer.Password = Encrypt.EncryptSHA256(customer.Password);
                 var responseServer = RequestAPI.Request.Send<CustomerTemplate>(urlWebService, customer);
                 string codeResponse = responseServer.Data.ToString().Replace("\"","");
-                if (codeResponse.Equals("True"))
+                if (codeResponse.Equals("200"))
                 {
                     ViewBag.Message = "El registro ha sido exitoso";
                     return Details(customer.Document);
