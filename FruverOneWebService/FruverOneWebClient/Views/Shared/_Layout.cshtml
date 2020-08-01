@@ -8,29 +8,46 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="">
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("FruverONE", "Index", "RegisterCustomer", new { area = "" }, new { @class = "navbar-brand red" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "RegisterCustomer")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
     <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p class="text-center">&copy; @DateTime.Now.Year - FruverONE</p>
-        </footer>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+            @Html.ActionLink("FruverONE", "Index", "Home", new { area = "" }, new { @class = "navbar-brand red" })
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Productos
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">@Html.ActionLink("Frutas", "Frutas", "Product")</a>
+                            <a class="dropdown-item" href="#">@Html.ActionLink("Verduras", "Verduras", "Product")</a>
+                            <div class="dropdown-divider"></div>
+                             <a class="dropdown-item" href="#">@Html.ActionLink("Productos Estrellas", "Estrella", "Product")</a>
+                        </div>
+
+                    </li>
+                    &nbsp;&nbsp;
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            @Html.ActionLink("Registrar Usuario", "Index", "RegisterCustomer")
+                        </a>
+                    </li>
+
+                </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+        </div>
+    </nav>
+    @RenderBody()
+    <hr />
+    <footer>
+        <p class="text-center">&copy; @DateTime.Now.Year - FruverONE</p>
+    </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

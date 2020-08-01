@@ -109,7 +109,7 @@ namespace Business.Control
         /// </summary>
         private void fruits()
         {
-            const string commandSql = "SELECT * FROM \"frutas\"";
+            const string commandSql = "SELECT * FROM public.\"frutas\"";
 
             var data = query.ResolveQuerySelect(commandSql);
             foreach (DataRow row in data.Rows)
