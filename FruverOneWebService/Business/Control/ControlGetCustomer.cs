@@ -58,7 +58,7 @@ namespace Business.Control
             {
                 customer = new Customer()
                 {
-                    Document = Int64.Parse(row.Field<string>(data.Columns[0])),
+                    Document = row.Field<int>(data.Columns[0]),
                     Name = row.Field<string>(data.Columns[1]),
                     LastName = row.Field<string>(data.Columns[2]),
                     PhoneNumber = row.Field<string>(data.Columns[3]),

@@ -128,6 +128,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestAPI\Request.cs" />
     <Compile Include="RequestAPI\Response.cs" />
+    <Compile Include="Util\Encrypt.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
