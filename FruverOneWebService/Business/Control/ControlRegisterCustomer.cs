@@ -2,11 +2,13 @@
 
 using Datos.DbContext;
 using Domain.Class;
+using Domain.Abstract;
 using Newtonsoft.Json.Linq;
+using Business.IControl;
 
 namespace Business.Control
 {
-    public class ControlRegisterCustomer
+    public class ControlRegisterCustomer : IControlRegisterCostumer
     {
         readonly ResponseQuery query;
 
@@ -21,15 +23,18 @@ namespace Business.Control
         /// <returns>True: El usuario ha sido registrado con éxito, False, de lo contrario</returns>
         public bool RegisterCostumer(JObject dataCustomer)
         {
+            bool requestUserAccount = this.RegisterUserAccount(dataCustomer);
+
             Customer customer = this.CreateModelCustomer(dataCustomer);
 
-            string commandSql = "INSERT INTO \"Customer\" VALUES" +
-                                $"('{customer.Document}','{customer.Name}','{customer.LastName}','{customer.PhoneNumber}'," +
-                                $"'{customer.Address}')";
+            string commandSql = "INSERT INTO customers VALUES" +
+                                $"('{customer.Document}','{customer.Name}','{customer.LastName}'," +
+                                $"'{customer.PhoneNumber}','{customer.Email}','{customer.NameOrganization}'," +
+                                $"'{customer.ZipCode}','{customer.Address}')";
 
             bool requestCustomer = query.ResolveQueryInsert(commandSql);
 
-            bool requestUserAccount = this.RegisterUserAccount(dataCustomer);
+            
 
             return requestCustomer && requestUserAccount;
 
@@ -40,12 +45,12 @@ namespace Business.Control
         /// </summary>
         /// <param name="dataCustomer">JSON con la información del cliente</param>
         /// <returns>True si la cuenta fué creada en la base de datos, false de lo contrario</returns>
-        private bool RegisterUserAccount(JObject dataCustomer)
+        public bool RegisterUserAccount(JObject dataCustomer)
         {
             UserAccount account = this.CreateModelAccount(dataCustomer);
 
-            string commandSql = "INSERT INTO public.\"UserAccount\" VALUES" +
-                                $"('{account.Email}','{account.Password}','{account.DocumentCustomer}')";
+            string commandSql = "INSERT INTO user_accounts VALUES" +
+                                $"('{account.Email}','{account.Password}',null,'{account.Role}',null)";
 
             bool request = query.ResolveQueryInsert(commandSql);
 
@@ -60,12 +65,11 @@ namespace Business.Control
         /// <returns>objeto UserAccount con todos sus atributos</returns>
         private UserAccount CreateModelAccount(JObject dataCustomer)
         {
-            return new UserAccount()
-            {
-                Email= dataCustomer["Email"].ToString(),
-                Password = dataCustomer["Password"].ToString(),
-                DocumentCustomer= dataCustomer["Document"].ToString()
-            };
+            string email = dataCustomer["Email"].ToString();
+            string password = dataCustomer["Password"].ToString();
+            const string role = "client";
+
+            return new UserAccount(email, password, role);
 
         }
 
@@ -76,16 +80,25 @@ namespace Business.Control
         /// <returns>objeto Customer con todos sus atributos</returns>
         private Customer CreateModelCustomer(JObject dataCustomer)
         {
-            return new Customer()
-            {
-                Document = dataCustomer["Document"].ToString(),
-                Name = dataCustomer["Name"].ToString(),
-                LastName = dataCustomer["LastName"].ToString(),
-                PhoneNumber = Convert.ToInt64(dataCustomer["PhoneNumber"].ToString()),
-                Address = dataCustomer["Address"].ToString()
-            };
+            Customer client = new Customer()
+                {
+                    Document = (long) dataCustomer["Document"],
+                    Name = dataCustomer["Name"].ToString(),
+                    LastName = dataCustomer["LastName"].ToString(),
+                    PhoneNumber = dataCustomer["PhoneNumber"].ToString(),
+                    Email = dataCustomer["Email"].ToString(),
+                    NameOrganization = dataCustomer["NameOrganization"].ToString(),
+                    ZipCode = dataCustomer["ZipCode"].ToString(),
+                    Address = dataCustomer["Address"].ToString()
+                };
+
+            client.UserAccount = this.CreateModelAccount(dataCustomer);
+            return client;
+
+
 
         }
-        
+
+
     }
 }

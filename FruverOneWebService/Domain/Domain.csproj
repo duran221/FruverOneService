@@ -41,7 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\User.cs" />
+    <Compile Include="Class\Administrator.cs" />
+    <Compile Include="Class\Cart.cs" />
+    <Compile Include="Class\CartDetails.cs" />
     <Compile Include="Class\Customer.cs" />
+    <Compile Include="Class\Order.cs" />
+    <Compile Include="Class\OrderDetails.cs" />
     <Compile Include="Class\UserAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
