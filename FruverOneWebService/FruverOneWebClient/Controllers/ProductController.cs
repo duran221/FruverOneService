@@ -18,19 +18,23 @@ namespace FruverOneWebClient.Controllers
 
         public ActionResult Frutas() {
             ListProduct miLista = new ListProduct("FRUTA");
-           
+            ViewBag.nameList = "Listado de Frutas";
             return View("Product", miLista);
         }
 
         public ActionResult Verduras()
         {
-
-            return View("Product");
+            ListProduct miLista = new ListProduct("VEGETAL");
+            ViewBag.nameList = "Listado de Vegetales";
+            return View("Product", miLista);
+         
         }
         public ActionResult Estrella()
         {
+            ListProduct miLista = new ListProduct("STAR");
+            ViewBag.nameList = "Productos Estrella";
+            return View("Product", miLista);
 
-            return View("Product");
         }
     }
 }
