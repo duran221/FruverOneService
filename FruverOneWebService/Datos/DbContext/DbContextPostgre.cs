@@ -10,15 +10,10 @@ namespace Datos.DbContext
     {
         //Parámetros necesarios para realizar la conexion a la base de datos:
         private const string server = "localhost";
-        private const string port = "5430";
+        private const string port = "5432";
         private const string userId = "postgres";
-<<<<<<< HEAD
         private const string password = "9294";
-        private const string dataBase = "FruverOne";
-=======
-        private const string password = "12345";
         private const string dataBase = "postgres";
->>>>>>> e90095af8d90d1403fda1c6e130038b1f1c878fd
 
 
         //Objeto que permite realizar la conexión a la base de datos con PostgreSQL

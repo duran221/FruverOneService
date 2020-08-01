@@ -30,7 +30,7 @@ namespace Business.Control
         {
            
             Order register = this.CreateModelOrder(Document);
-             string commandSql=  "INSERT INTO orders(id_customer, date_creation, date_sent, name, address, phone, city, status)" +
+             string commandSql=  "INSERT INTO orders (id_customer, date_creation, date_sent, name, address, phone, city, status)" +
 
           " VALUES" + $"({register.DocumentCustomer}, NOW(),NOW()," +
                                 $"'{register.customerName}','{register.shippingAddress}','{register.phone}','null','{register.status}')";
