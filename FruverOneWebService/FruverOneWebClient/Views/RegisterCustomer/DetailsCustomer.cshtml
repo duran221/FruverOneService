@@ -1,7 +1,7 @@
 ﻿@model FruverOneWebClient.Models.CustomerTemplate
 
 @{
-    ViewBag.Title = "DetailsCustomer";
+    ViewBag.Title = "¡Bienvenido!";
 }
 
 <div class="form-horizontal">
@@ -14,13 +14,13 @@
     }
 </div>
 
-<h2>DetailsCustomer</h2>
+<h2>¡Es un placer tenerte con nosotros!</h2>
 
 <div>
-    <h4>CRUD Details For A Customer</h4>
+    <h4>Tu registro ha sido completado de forma satisfactoria, a continuación un resumen de los datos suministrados:</h4>
     <hr />
 
-    @if (Model.Document!=null)
+    @if (Model.Document != null)
     {
         <dl class="dl-horizontal">
             <dt>
@@ -62,11 +62,22 @@
             <dd>
                 @Html.DisplayFor(model => model.Address)
             </dd>
-       
+
         </dl>
+
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    @Html.ActionLink("Ir Al Inicio", "Index", null, new { @class = "btn btn-primary btn-large" })
+                </div>
+            </div>
+        </div>
+
     }
+
+
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { /*id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

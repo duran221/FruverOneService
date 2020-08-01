@@ -8,10 +8,24 @@ namespace Domain.Class
 {
     public class UserAccount
     {
-        public int Id { get; }
-        public string Email { get; set; }
+        
+        public string Email { get;}
+
         public  string Password { get; set; }
-        public string DocumentCustomer { get; set; }
+        public int? IdStatus { get; }
+        public int? Token { get; set; }
+        public string Role { get;}
+
+        public UserAccount(String email, string password, string role)
+        {
+            this.Email = email;
+            this.Password = password;
+            this.Role = role;
+            this.IdStatus = null;
+            this.Token = null;
+        }
+
+
 
     }
 }
