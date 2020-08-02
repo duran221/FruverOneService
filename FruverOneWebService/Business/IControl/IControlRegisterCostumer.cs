@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business.IControl
 {
-    interface IControlRegisterCostumer
+    public interface IControlRegisterCostumer
     {
         bool RegisterCostumer(JObject dataCustomer);
 

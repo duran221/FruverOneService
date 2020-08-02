@@ -75,10 +75,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\ControlCart.cs" />
+    <Compile Include="Control\ControlCartDetails.cs" />
     <Compile Include="Control\ControlGetCustomer.cs" />
     <Compile Include="Control\ControlGetListProduct.cs" />
+    <Compile Include="Control\ControlGetOrders.cs" />
+    <Compile Include="Control\ControlOrden.cs" />
     <Compile Include="Control\ControlRegisterCustomer.cs" />
+    <Compile Include="IControl\IControlCart.cs" />
+    <Compile Include="IControl\IControlCartDetails.cs" />
     <Compile Include="IControl\IControlGetListProduct.cs" />
+    <Compile Include="IControl\IControlGetOrders.cs" />
+    <Compile Include="IControl\IControlOrder.cs" />
+    <Compile Include="IControl\IControlOrderDetails.cs" />
     <Compile Include="IControl\IControlRegisterCostumer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
