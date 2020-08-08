@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\AuthenticateUser.cs" />
     <Compile Include="Control\ControlCart.cs" />
     <Compile Include="Control\ControlCartDetails.cs" />
     <Compile Include="Control\ControlGetCustomer.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Control\ControlGetOrders.cs" />
     <Compile Include="Control\ControlOrden.cs" />
     <Compile Include="Control\ControlRegisterCustomer.cs" />
+    <Compile Include="IControl\IAuthenticateUser.cs" />
     <Compile Include="IControl\IControlCart.cs" />
     <Compile Include="IControl\IControlCartDetails.cs" />
     <Compile Include="IControl\IControlGetListProduct.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="IControl\IControlOrderDetails.cs" />
     <Compile Include="IControl\IControlRegisterCostumer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\Encrypt.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj">
