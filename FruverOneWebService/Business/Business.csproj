@@ -77,8 +77,10 @@
   <ItemGroup>
     <Compile Include="Control\ControlGetCustomer.cs" />
     <Compile Include="Control\ControlGetListProduct.cs" />
+    <Compile Include="Control\ControlGetProduct.cs" />
     <Compile Include="Control\ControlRegisterCustomer.cs" />
     <Compile Include="IControl\IControlGetListProduct.cs" />
+    <Compile Include="IControl\IControlGetProduct.cs" />
     <Compile Include="IControl\IControlRegisterCostumer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
