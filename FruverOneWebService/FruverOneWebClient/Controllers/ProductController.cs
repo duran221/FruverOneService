@@ -36,5 +36,11 @@ namespace FruverOneWebClient.Controllers
             return View("Product", miLista);
 
         }
+        public ActionResult viewProduct(string nameProduct) {
+
+            ViewBag.Message = nameProduct;
+            return View("ViewProduct");
+        }
+
     }
 }
