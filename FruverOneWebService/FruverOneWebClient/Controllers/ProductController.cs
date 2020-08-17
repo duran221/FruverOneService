@@ -39,6 +39,12 @@ namespace FruverOneWebClient.Controllers
         public ActionResult viewProduct(string nameProduct) {
 
             ViewBag.Message = nameProduct;
+            ViewBag.Image_url = "F0500.jpg";
+            ViewBag.Category = "Frutas";
+            ViewBag.Name = "Mango";
+            ViewBag.Description = "Pulpa de mango";
+            ViewBag.Price = 500;
+            
             return View("ViewProduct");
         }
 
