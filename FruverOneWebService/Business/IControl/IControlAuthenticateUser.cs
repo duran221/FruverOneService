@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace Business.IControl
 {
-    public interface IAuthenticateUser
+    public interface IControlAuthenticateUser
     {
         UserAccount Login(JObject userCredentials);
+
+        bool VerifyToken(string token);
     }
 }

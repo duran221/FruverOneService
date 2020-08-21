@@ -14,7 +14,7 @@ namespace FruverOneWebClient.Controllers
         /// </summary>
         /// <returns></returns>
         public ActionResult Index()
-        {
+            {
 
             return View("RegisterCustomer");
         }

@@ -1,24 +1,19 @@
 ﻿using Business.IControl;
 using Datos.DbContext;
-using Domain.Abstract;
 using Domain.Class;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Business.Control
 {
-    public class AuthenticateUser : IAuthenticateUser
+    public class ControlAuthenticateUser : IControlAuthenticateUser
     {
 
         readonly ResponseQuery query;
 
-        public AuthenticateUser()
+        public ControlAuthenticateUser()
         {
             query = new ResponseQuery();
         }
@@ -34,7 +29,7 @@ namespace Business.Control
             string password = userCredentials["Password"].ToString();
 
             string passwordEncrypt = Util.Encrypt.EncryptSHA256(password);
-            string commandSql = $"SELECT * FROM customers WHERE email='{email}' and password='{passwordEncrypt}'" +
+            string commandSql = $"SELECT * FROM user_accounts WHERE email='{email}' and password='{passwordEncrypt}'" +
                 $"and id_status=1";
 
             var data = query.ResolveQuerySelect(commandSql);
@@ -74,8 +69,8 @@ namespace Business.Control
         /// <returns></returns>
         private bool SaveToken(UserAccount user)
         {
-            string commandSql = $"UPDATE  user_account SET token={user.Token}" +
-                $" WHERE email={user.Email}";
+            string commandSql = $"UPDATE  user_accounts SET token='{user.Token}'" +
+                $" WHERE email='{user.Email}'";
 
             bool request = query.ResolveQueryInsert(commandSql);
             return request;
@@ -88,5 +83,21 @@ namespace Business.Control
         /// <returns></returns>
         public string GetToken() =>  Guid.NewGuid().ToString();
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public bool VerifyToken(string token)
+        {
+
+            string commandSql = $"SELECT * FROM user_accounts WHERE token= '{token}'" +
+                $"and id_status=1";
+
+            var data = query.ResolveQuerySelect(commandSql);
+
+            return data.Rows.Count > 0;
+        }
     }
 }

@@ -5,11 +5,22 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using APIFruverOne.Util;
+using Business.IControl;
+using Business.Control;
+using Domain.Class;
 
 namespace APIFruverOne.Controllers
 {
-    public class LoginController : ApiController
+    public class LoginController : BaseVerifyController
     {
+        readonly IControlAuthenticateUser controlLogin;
+
+
+        public LoginController()
+        {
+            this.controlLogin = new ControlAuthenticateUser();
+        }
        
         [HttpPost]
         // GET: api/Login/5
@@ -17,10 +28,14 @@ namespace APIFruverOne.Controllers
         {
             try
             {
-                return Ok("OK");
-            }catch(Exception ex)
+
+                var loginModel = controlLogin.Login(userCredentials);
+                return loginModel.Token != null ? Ok(Utilities.BuildResponse<UserAccount>(loginModel, 200)) : Ok(Utilities.BuildResponse<JObject>(null, 404));
+
+            }
+            catch(Exception ex)
             {
-                return null;
+                return Ok(Utilities.BuildResponse<Exception>(ex,500));
 
             }
         }
