@@ -1,11 +1,15 @@
-﻿using System;
+﻿using FruverOneWebClient.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace FruverOneWebClient.Controllers
 {
+
     public class LoginController : Controller
     {
         // GET: Login
@@ -14,76 +18,52 @@ namespace FruverOneWebClient.Controllers
             return View("Login");
         }
 
-        // GET: Login/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Login/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         // POST: Login/Create
+        [AllowAnonymous]
         [HttpPost]
-        public ActionResult LoginUser(FormCollection collection)
+        public ActionResult LoginUser(UserAccountTemplate userCredentials)
         {
             try
             {
                 // TODO: Add insert logic here
+                string urlWebService = $"http://localhost:63659/api/Login";
+                string method = "POST";
+                //Se envia la petición al Web Service solicitando los datos del usuario creado
+                var responseServer = RequestAPI.Request.Send<UserAccountTemplate>(urlWebService,userCredentials);
+                var responseJSON = responseServer.Data.ToString();
+                UserAccountTemplate userAccountModel = JsonConvert.DeserializeObject<UserAccountTemplate>(responseJSON.ToString());
 
-                return RedirectToAction("Index");
+                //Serializamos la cadena JSON recibida por el web service en un objeto tipo CustomerTemplate
+                if (userAccountModel.Status == 200)
+                {
+                    userAccountModel = JsonConvert.DeserializeObject<UserAccountTemplate>(userAccountModel.Data.ToString());
+                    Session["User"] = userAccountModel;
+                    FormsAuthentication.SetAuthCookie(userAccountModel.Email, true);
+                    ViewBag.Message = "Bienvenido"; 
+                    return RedirectToAction("Frutas","Product", new { });
+                    
+                }
+                else
+                {
+                    ViewBag.Message = "Datos De Acceso Incorrectos";
+                    return Index();
+                }
+                
             }
             catch
             {
-                return View();
+                ViewBag.Message = "Error interno en el servicio, por favor, intente más tarde";
+                return Index();
             }
         }
 
-        // GET: Login/Edit/5
-        public ActionResult Edit(int id)
+        [Authorize]
+        public ActionResult Logout()
         {
-            return View();
+            FormsAuthentication.SignOut();
+            Session.RemoveAll();
+            return RedirectToAction("Index");
         }
 
-        // POST: Login/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Login/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Login/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
