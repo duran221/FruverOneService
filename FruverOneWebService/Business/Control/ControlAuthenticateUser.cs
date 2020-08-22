@@ -19,10 +19,10 @@ namespace Business.Control
         }
 
         /// <summary>
-        /// 
+        /// Permite a un usuario iniciar sesión en la plataforma a partir de sus datos email y contraseña
         /// </summary>
-        /// <param name="userCredentials"></param>
-        /// <returns></returns>
+        /// <param name="userCredentials">JSON Con la información de sesión del usuario email y contraseña</param>
+        /// <returns>Si el inicio de sesión fué exitoso retorna un Modelo 'UserAccount' con las credenciales de sesión</returns>
         public UserAccount Login(JObject userCredentials)
         {
             string email = userCredentials["Email"].ToString();
@@ -39,6 +39,12 @@ namespace Business.Control
            
         }
 
+        /// <summary>
+        /// Construye un modelo de tipo UserAccount a partir de una tabla producto de una consulta en la base de datos
+        /// </summary>
+        /// <param name="data">Objeto tabla que contiene los datos de la consulta en la base de datos</param>
+        /// <param name="user">Modelo vacio UserAccount</param>
+        /// <returns>Modelo UserAccount con la información del Usuario, si no existe datos en la tabla retorna un modelo vacío</returns>
         private  UserAccount GetUserAccount(DataTable data, UserAccount user)
         {
             foreach (DataRow row in data.Rows)
@@ -63,10 +69,10 @@ namespace Business.Control
         }
         
         /// <summary>
-        /// 
+        /// Actualiza un token generado en la base de datos de un usuario específico.
         /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
+        /// <param name="user">Modelo que contiene la información del usuario al que se le va a actualizar el token</param>
+        /// <returns>Verdadero si el token fué actualizado con éxito, false, de lo contrario</returns>
         private bool SaveToken(UserAccount user)
         {
             string commandSql = $"UPDATE  user_accounts SET token='{user.Token}'" +
@@ -78,17 +84,17 @@ namespace Business.Control
 
 
         /// <summary>
-        /// 
+        /// Genera un token aleatorio como producto de un intento de inicio de sesión exitoso
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Cadena alfanúmerica con el token generado</returns>
         public string GetToken() =>  Guid.NewGuid().ToString();
 
 
         /// <summary>
-        /// 
+        /// Permite verificar si un token existe en la plataforma, si el token existe, el usuario tiene acceso a los servicios.
         /// </summary>
-        /// <param name="token"></param>
-        /// <returns></returns>
+        /// <param name="token">token enviado para el cliente para verificar su existencia</param>
+        /// <returns>Verdadero si el token existe en la base de datos, Falso de lo contrario</returns>
         public bool VerifyToken(string token)
         {
 
@@ -101,3 +107,4 @@ namespace Business.Control
         }
     }
 }
+  

@@ -10,12 +10,12 @@ namespace APIFruverOne.Util
     {
 
         /// <summary>
-        /// 
+        /// Permite armar una respuesta en formato JSON que será retornada a el cliente
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">Modelo generico que será almacenado en el campo data de la respuesta</typeparam>
         /// <param name="objectModel"></param>
-        /// <param name="status"></param>
-        /// <returns></returns>
+        /// <param name="status">estado de respuesta de la solicitud</param>
+        /// <returns>Objeto JSON con los campos que serán retornados a el cliente que realiza la solicitud</returns>
         public static JObject BuildResponse<T>(T objectModel,int status)
         {
                 return JObject.FromObject(new

@@ -1,0 +1,56 @@
+﻿@model FruverOneWebClient.Models.UserAccountTemplate
+<link href="~/StylesPage/stylesLogin.css" rel="stylesheet">
+
+@{
+    ViewBag.Title = "View";
+}
+
+@using (Html.BeginForm("LoginUser", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.AntiForgeryToken()
+    <body class="body-Login-back">
+
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+                <!-- Tabs Titles -->
+                <!-- Icon -->
+                <div class="fadeIn first">
+                    <img src="~/Img/fruverlogo.png" id="icon" alt="User Icon" />
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Iniciar Sesión</h3>
+                    </div>
+                </div>
+
+                <!-- Login Form -->
+                <form method="post">
+                    @{
+
+                        if (!string.IsNullOrEmpty(ViewBag.Message))
+                        {
+                            <div class="alert alert-warning">@ViewBag.Message</div>
+                        }
+                    }
+
+
+                    <input type="email" id="login" class="fadeIn second" name="login" placeholder="login" required>
+                    <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" required>
+                    <input type="submit" class="fadeIn fourth" value="Log In">
+
+                    <div>
+                        <li>@Html.ActionLink("¿Olvidó Su Contraseña?", "RecoverPassword", "RecoverPassword", new { area = "" }, new { @class = "underlineHover" })</li>
+                    </div>
+
+
+                  
+                </form>
+                <!-- Remind Passowrd -->
+                <div id="formFooter">
+                    
+                    <li>¿Aún no tiene una cuenta? @Html.ActionLink("registrarse", "Index", "RegisterCustomer", new { area = "" }, new { @class = "underlineHover" })</li>
+                </div>
+
+            </div>
+
+    </body>
+}

@@ -21,7 +21,13 @@ namespace APIFruverOne.Controllers
         {
             this.controlLogin = new ControlAuthenticateUser();
         }
-       
+
+
+        /// <summary>
+        /// Permite a un usuario loguearse en la plataforma
+        /// </summary>
+        /// <param name="userCredentials">JSON con las credenciales del usuario (email,contraseña)</param>
+        /// <returns>Objeto con las credenciales del usuario y status 200 si el inicio de sesión es exitoso</returns>
         [HttpPost]
         // GET: api/Login/5
         public IHttpActionResult Get(JObject userCredentials)

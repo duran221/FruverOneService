@@ -122,6 +122,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RegisterCustomerController.cs" />
     <Compile Include="Global.asax.cs">
@@ -130,6 +131,7 @@
     <Compile Include="Models\CustomerTemplate.cs" />
     <Compile Include="Models\ListProduct.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\UserAccountTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestAPI\Request.cs" />
     <Compile Include="RequestAPI\Response.cs" />
@@ -147,6 +149,39 @@
     <Content Include="Content\Site.css" />
     <Content Include="Img\test.png" />
     <Content Include="Img\test2.jpg" />
+    <Content Include="Scripts\Assets\css\main-style.css" />
+    <Content Include="Scripts\Assets\css\style.css" />
+    <Content Include="Scripts\Assets\font-awesome\css\font-awesome.css" />
+    <Content Include="Scripts\Assets\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Scripts\Assets\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\Assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\Assets\img\logo.png" />
+    <Content Include="Scripts\Assets\img\user.jpg" />
+    <Content Include="Scripts\Assets\plugins\bootstrap\bootstrap.css" />
+    <Content Include="Scripts\Assets\plugins\bootstrap\bootstrap.js" />
+    <Content Include="Scripts\Assets\plugins\bootstrap\bootstrap.min.js" />
+    <Content Include="Scripts\Assets\plugins\dataTables\dataTables.bootstrap.css" />
+    <Content Include="Scripts\Assets\plugins\dataTables\dataTables.bootstrap.js" />
+    <Content Include="Scripts\Assets\plugins\dataTables\jquery.dataTables.js" />
+    <Content Include="Scripts\Assets\plugins\flot\excanvas.min.js" />
+    <Content Include="Scripts\Assets\plugins\flot\jquery.flot.js" />
+    <Content Include="Scripts\Assets\plugins\flot\jquery.flot.pie.js" />
+    <Content Include="Scripts\Assets\plugins\flot\jquery.flot.resize.js" />
+    <Content Include="Scripts\Assets\plugins\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="Scripts\Assets\plugins\images\sort_asc.png" />
+    <Content Include="Scripts\Assets\plugins\jquery-1.10.2.js" />
+    <Content Include="Scripts\Assets\plugins\metisMenu\jquery.metisMenu.js" />
+    <Content Include="Scripts\Assets\plugins\morris\morris-0.4.3.min.css" />
+    <Content Include="Scripts\Assets\plugins\morris\morris.js" />
+    <Content Include="Scripts\Assets\plugins\morris\raphael-2.1.0.min.js" />
+    <Content Include="Scripts\Assets\plugins\pace\pace-theme-big-counter.css" />
+    <Content Include="Scripts\Assets\plugins\pace\pace.js" />
+    <Content Include="Scripts\Assets\plugins\social-buttons\social-buttons.css" />
+    <Content Include="Scripts\Assets\plugins\timeline\timeline.css" />
+    <Content Include="Scripts\Assets\scripts\dashboard-demo.js" />
+    <Content Include="Scripts\Assets\scripts\flot-demo.js" />
+    <Content Include="Scripts\Assets\scripts\morris-demo.js" />
+    <Content Include="Scripts\Assets\scripts\siminta.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -170,6 +205,13 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Scripts\Assets\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\Assets\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Scripts\Assets\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Scripts\Assets\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Scripts\Assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\Assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\Assets\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -252,6 +294,12 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="StylesPage\bootstrap.css" />
+    <Content Include="StylesPage\font-awesome.css" />
+    <Content Include="StylesPage\main-style.css" />
+    <Content Include="StylesPage\pace-theme-big-counter.css" />
+    <Content Include="StylesPage\style.css" />
+    <Content Include="StylesPage\stylesLogin.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -279,6 +327,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Login\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
