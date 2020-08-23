@@ -59,24 +59,31 @@ namespace Business.Control
         {
             string commandSql = "SELECT * FROM public.product('" + nameProduct + "')";
             var data = query.ResolveQuerySelect(commandSql);
-
             String queryProd = @"{";
 
-            foreach (DataRow row in data.Rows)
+            if (data.Rows.Count > 0)
             {
 
-                queryProd += @"'COD':'" + row.Field<string>(data.Columns[0]).Trim() + "',"; //Cod
-                queryProd += @"'NameCategory':'"+ row.Field<string>(data.Columns[1]).Trim() + "',"; //Categoria
-                queryProd += @"'Name':'"+row.Field<string>(data.Columns[2]).Trim() + "',"; //Nameproduct
-                queryProd += @"'Description':'" + row.Field<string>(data.Columns[3]).Trim() + "',";//Description
-                queryProd += @"'Price':" + row.Field<Int32>(data.Columns[4]) + ",";
-                queryProd += @"'Discount':" + float.Parse(row.Field<Decimal>(data.Columns[5]).ToString()) + ",";
-                queryProd += @"'Image_url':'" + row.Field<string>(data.Columns[6]).Trim() + "',";
-                queryProd += @"'Quantity':" + row.Field<Int32>(data.Columns[7]) + "}";
+                queryProd += @"'message': 200,";
+                foreach (DataRow row in data.Rows)
+                {
+
+                    queryProd += @"'COD':'" + row.Field<string>(data.Columns[0]).Trim() + "',"; //Cod
+                    queryProd += @"'NameCategory':'" + row.Field<string>(data.Columns[1]).Trim() + "',"; //Categoria
+                    queryProd += @"'Name':'" + row.Field<string>(data.Columns[2]).Trim() + "',"; //Nameproduct
+                    queryProd += @"'Description':'" + row.Field<string>(data.Columns[3]).Trim() + "',";//Description
+                    queryProd += @"'Price':" + row.Field<Int32>(data.Columns[4]) + ",";
+                    queryProd += @"'Discount':" + float.Parse(row.Field<Decimal>(data.Columns[5]).ToString()) + ",";
+                    queryProd += @"'Image_url':'" + row.Field<string>(data.Columns[6]).Trim() + "',";
+                    queryProd += @"'Quantity':" + row.Field<Int32>(data.Columns[7]) + "}";
+                }
+
             }
+            else {
+                queryProd += @"'message': 400 }";
 
+            }
             JObject productJSON = JObject.Parse(queryProd);
-
             return productJSON;
             
         }

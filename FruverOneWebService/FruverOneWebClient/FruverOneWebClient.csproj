@@ -141,6 +141,7 @@
     <Compile Include="Models\CustomerTemplate.cs" />
     <Compile Include="Models\ListProduct.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProdutView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestAPI\Request.cs" />
     <Compile Include="RequestAPI\Response.cs" />
@@ -159,6 +160,7 @@
     <Content Include="Img\test.png" />
     <Content Include="Img\test2.jpg" />
     <Content Include="JS\BrowserProduct.js" />
+    <Content Include="JS\ProductView.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />

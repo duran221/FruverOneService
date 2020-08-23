@@ -1,4 +1,5 @@
 ﻿using Business.Control;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,11 @@ namespace APIFruverOne.Controllers
                 return Ok(this.product.getProduct((nameProduct.ToUpper()).Trim()));
             }
             else {
-                return Ok("{error= 500}");
+
+                String queryProd = @"{'message': 400}";
+                JObject productJSON = JObject.Parse(queryProd);
+
+                return Ok(productJSON);
             
             }
 
