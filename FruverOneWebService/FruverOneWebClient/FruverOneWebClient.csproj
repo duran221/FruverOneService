@@ -131,9 +131,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-
     <Compile Include="Controllers\LoginController.cs" />
-
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RegisterCustomerController.cs" />
     <Compile Include="Global.asax.cs">
@@ -142,9 +140,8 @@
     <Compile Include="Models\CustomerTemplate.cs" />
     <Compile Include="Models\ListProduct.cs" />
     <Compile Include="Models\Product.cs" />
-
+    <Compile Include="Models\ProdutView.cs" />
     <Compile Include="Models\UserAccountTemplate.cs" />
-
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestAPI\Request.cs" />
     <Compile Include="RequestAPI\Response.cs" />
@@ -162,10 +159,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Img\test.png" />
     <Content Include="Img\test2.jpg" />
-
     <Content Include="JS\BrowserProduct.js" />
     <Content Include="JS\ProductView.js" />
-
     <Content Include="Scripts\Assets\css\main-style.css" />
     <Content Include="Scripts\Assets\css\style.css" />
     <Content Include="Scripts\Assets\font-awesome\css\font-awesome.css" />
@@ -199,7 +194,6 @@
     <Content Include="Scripts\Assets\scripts\flot-demo.js" />
     <Content Include="Scripts\Assets\scripts\morris-demo.js" />
     <Content Include="Scripts\Assets\scripts\siminta.js" />
-
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -345,11 +339,8 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-
     <Content Include="Views\Product\ViewProduct.cshtml" />
-
     <Content Include="Views\Login\Login.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
