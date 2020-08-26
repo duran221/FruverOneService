@@ -41,7 +41,7 @@ else
                         <div class="form-group">
 
                             <div class="">
-                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "fadeIn third", @placeholder = "Ingrese Su Correo Electrónico" } })
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "fadeIn third", @placeholder = "Ingrese Su Correo Electrónico", @required="required" } })
                                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -49,7 +49,7 @@ else
                         <div class="form-group">
 
                             <div class="">
-                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "fadeIn third", @placeholder = "Ingrese Su Contraseña", @type = "password" } })
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "fadeIn third", @placeholder = "Ingrese Su Contraseña", @type = "password",@required="required" } })
                                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                             </div>
                         </div>
