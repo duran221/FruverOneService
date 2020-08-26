@@ -6,15 +6,17 @@ using FruverOneWebClient.Util;
 
 namespace FruverOneWebClient.Controllers
 {
+    [Authorize]
     public class RegisterCustomerController : Controller
     {
+        [AllowAnonymous]
         /// <summary>
         /// Permite mostrar la Página inicial con el formulario de registro de usuario
         /// Ruta para accesar:GET: RegisterCustomer
         /// </summary>
         /// <returns></returns>
         public ActionResult Index()
-        {
+            {
 
             return View("RegisterCustomer");
         }
@@ -48,6 +50,7 @@ namespace FruverOneWebClient.Controllers
         /// <param name="customer">Objeto con los atributos diligenciados por el Cliente en el formulario web</param>
         /// <returns>Si la inserción es correcta, retorna la Vista con los detalles del Cliente, de lo contrario, recarga el formulario de inserción</returns>
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Create(CustomerTemplate customer)
         {
             try

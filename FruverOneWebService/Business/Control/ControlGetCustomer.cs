@@ -48,12 +48,25 @@ namespace Business.Control
         /// si el cliente no existe se retorna un objeto con atributos vacios</returns>
         public Customer GetCustomer(long documentCustomer)
         {
-            
+
             string commandSql = $"SELECT * FROM customers WHERE document='{documentCustomer}'";
 
             var data = query.ResolveQuerySelect(commandSql);
 
-            Customer customer= new Customer();
+            Customer customer = new Customer();
+            customer = this.GetCustomerModel(data, customer);
+            return customer;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="customer"></param>
+        /// <returns></returns>
+        private  Customer GetCustomerModel(DataTable data, Customer customer)
+        {
             foreach (DataRow row in data.Rows)
             {
                 customer = new Customer()
@@ -68,8 +81,10 @@ namespace Business.Control
                     Address = row.Field<string>(data.Columns[7])
                 };
             }
+
             return customer;
         }
 
+        
     }
 }
