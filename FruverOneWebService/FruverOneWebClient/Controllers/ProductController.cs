@@ -1,4 +1,5 @@
 ﻿using FruverOneWebClient.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -37,5 +38,33 @@ namespace FruverOneWebClient.Controllers
             return View("Product", miLista);
 
         }
+        public ActionResult viewProduct(string nameProduct) {
+
+            ProdutView searchProduct = new ProdutView();
+            String m = searchProduct.GetHttpProduct(nameProduct);
+            dynamic data = JsonConvert.DeserializeObject(m);
+
+            if (data.message == 200)
+            {
+
+                ViewBag.COD = data.COD;
+                ViewBag.Message = data.Name;
+                ViewBag.Image_url = data.Image_url;
+                ViewBag.Category = data.NameCategory;
+                ViewBag.Name = data.Name;
+                ViewBag.Description = data.Description;
+                ViewBag.Price = data.Price;
+                ViewBag.Desc = data.Discount;
+                ViewBag.busqueda = true;
+            }
+            else {
+
+                ViewBag.busqueda = false;
+
+            }
+           
+            return View("ViewProduct");
+        }
+
     }
 }

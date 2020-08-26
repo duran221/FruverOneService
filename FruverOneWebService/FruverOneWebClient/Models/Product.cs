@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace FruverOneWebClient.Models
 {
@@ -28,5 +24,8 @@ namespace FruverOneWebClient.Models
             this.IVA = IVA;
             this.Image_url = Image_url;
         }
+
+
+
     }
 }
