@@ -13,7 +13,7 @@ namespace Datos.DbContext
         private const string port = "5432";
         private const string userId = "postgres";
         private const string password = "9294";
-        private const string dataBase = "postgres";
+        private const string dataBase = "FruverOne";
 
 
         //Objeto que permite realizar la conexión a la base de datos con PostgreSQL

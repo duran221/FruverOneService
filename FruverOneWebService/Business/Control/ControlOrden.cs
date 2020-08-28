@@ -54,12 +54,8 @@ namespace Business.Control
                 DocumentCustomer = customer.Document
                 
             };
-
-
             return order;
-
-
-
+            
         }
 
     }
