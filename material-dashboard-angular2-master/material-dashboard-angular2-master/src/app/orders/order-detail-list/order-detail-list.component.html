@@ -1,0 +1,33 @@
+<table class="table table-hover">
+    <thead class=" text-primary">
+        <th>
+            Fecha
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Dirección
+        </th>
+        <th>
+            Teléfono
+        </th>
+        <th>
+            Ciudad
+        </th>
+        <th>
+            Estado
+        </th>
+    </thead>
+    <tr *ngFor="let pd of service.list">
+        <td>{{pd.order_date}}</td>
+        <td>{{pd.name}}</td>
+        <td>{{pd.address}}</td>
+        <td>{{pd.phone}}</td>
+        <td>{{pd.city}}</td>
+        <td>{{pd.status}}</td>
+        <td>
+            <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.order_id)"></i>
+          </td>
+    </tr>
+  </table>  
