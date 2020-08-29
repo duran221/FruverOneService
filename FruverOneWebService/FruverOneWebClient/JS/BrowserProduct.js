@@ -1,4 +1,6 @@
 ﻿var URL = "https://localhost:44304/api/GetProduct";
+
+
 $.get(URL, function (data) {
 
     if (data) {
