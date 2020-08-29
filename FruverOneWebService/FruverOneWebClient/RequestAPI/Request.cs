@@ -75,7 +75,7 @@ namespace FruverOneWebClient.RequestAPI
             request.Method = method;
             request.PreAuthenticate = true;
             request.ContentType = "application/json;charset=utf-8'";
-            request.Timeout = 10000; //esto es opcional
+            request.Timeout = 9000000; //esto es opcional
                                      //Se escribe el objeto JSON en el objeto request:
             request= EscribirArchivo(json, request);
 
