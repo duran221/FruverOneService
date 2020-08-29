@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace FruverOneWebClient.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         // GET: Product

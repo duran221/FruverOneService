@@ -50,7 +50,7 @@ namespace Business.Control
             UserAccount account = this.CreateModelAccount(dataCustomer);
 
             string commandSql = "INSERT INTO user_accounts VALUES" +
-                                $"('{account.Email}','{account.Password}',null,'{account.Role}',null)";
+                                $"('{account.Email}','{account.Password}',1,'{account.Role}',null)";
 
             bool request = query.ResolveQueryInsert(commandSql);
 
