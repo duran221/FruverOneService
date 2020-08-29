@@ -23,7 +23,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
 
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -40,6 +40,7 @@
 
     <div class="container body-content">
 
+        
 
         <div class="row">
             <div class="col-md-3 ml-md-auto">
@@ -59,74 +60,78 @@
 
                 }
             </div>
-            <img src="~/Img/fruverOne.jpeg" width="70" height="70" />&nbsp;&nbsp;
-            @Html.ActionLink("FruverONE", "Frutas", "Product", new { area = "" }, new { @class = "navbar-brand green" })
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <img src="~/Img/fruverOne.jpeg" width="70" height="70" />&nbsp;&nbsp;
+                @Html.ActionLink("FruverONE", "Frutas", "Product", new { area = "" }, new { @class = "navbar-brand green" })
 
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
 
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Catálogo
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item">@Html.ActionLink("Frutas", "Frutas", "Product")</a>
-                            <a class="dropdown-item">@Html.ActionLink("Verduras", "Verduras", "Product")</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item">@Html.ActionLink("Productos Estrellas", "Estrella", "Product")</a>
-                        </div>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Catálogo
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item">@Html.ActionLink("Frutas", "Frutas", "Product")</a>
+                                <a class="dropdown-item">@Html.ActionLink("Verduras", "Verduras", "Product")</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item">@Html.ActionLink("Productos Estrellas", "Estrella", "Product")</a>
+                            </div>
 
-                    </li>  &nbsp;&nbsp;
-                   &nbsp;&nbsp;
-                            <li class="nav-item">
-                                @Html.ActionLink("Promociones", "Index", "PromotionProduct", new { area = "" }, new { @class = "navbar-brand red" })
-                            </li>
-                    <li class="nav-item">
+                        </li>  &nbsp;&nbsp;
+                        &nbsp;&nbsp;
+                        <li class="nav-item">
+                            @Html.ActionLink("Promociones", "Index", "PromotionProduct", new { area = "" }, new { @class = "navbar-brand red" })
+                        </li>
+                        <li class="nav-item">
 
-                        @Html.ActionLink("Acerca de nosotros", "", "", new { area = "" }, new { @class = "navbar-brand green" })
-                    </li>  &nbsp;&nbsp;
-                    <li class="nav-item">
-                        @Html.ActionLink("Contacto", "", "", new { area = "" }, new { @class = "navbar-brand green" })
+                            @Html.ActionLink("Acerca de nosotros", "", "", new { area = "" }, new { @class = "navbar-brand green" })
+                        </li>  &nbsp;&nbsp;
+                        <li class="nav-item">
+                            @Html.ActionLink("Contacto", "", "", new { area = "" }, new { @class = "navbar-brand green" })
 
-                    </li>
-                    &nbsp;&nbsp;
-                    <li class="nav-item">
-                    </li>
-                </ul>
-                @using (Html.BeginForm("viewProduct", "Product"))
-                {
-
-                    <form class="form-inline my-2 my-lg-0">
-                        <input id="myInput" name="nameProduct" class="form-control mr-sm-2" type="search" placeholder="Buscar producto" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                            Buscar
-                        </button>
-                    </form>
-                }
-            </div>
-            @if (User.Identity.IsAuthenticated)
-            {
-                <div class="pull-right">
-                    <ul class="nav pull-right">
-                        <li class="dropdown">
-                            <img src="~/Img/user.png" width="30" />
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#"><i class="icon-cog"></i> Preferencias</a></li>
-                                <li><a href="#"><i class="icon-envelope"></i></a></li>
-                                <li class="divider"></li>
-                                <li>@Html.ActionLink("Cerrar Sesion", "Logout", "Login", new { area = "" }, null)</li>
-
-                            </ul>
+                        </li>
+                        &nbsp;&nbsp;
+                        <li class="nav-item">
                         </li>
                     </ul>
+                    @using (Html.BeginForm("viewProduct", "Product"))
+                    {
+
+                        <form class="form-inline my-2 my-lg-0">
+                            <input id="myInput" name="nameProduct" class="form-control mr-sm-2" type="search" placeholder="Buscar producto" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                                Buscar
+                            </button>
+                        </form>
+                    }
                 </div>
-            }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="pull-right">
+                        <ul class="nav pull-right">
+                            <li class="dropdown">
+                                <img src="~/Img/user.png" width="30" />
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#"><i class="icon-cog"></i> Preferencias</a></li>
+                                    <li><a href="#"><i class="icon-envelope"></i></a></li>
+                                    <li class="divider"></li>
+                                    <li>@Html.ActionLink("Cerrar Sesion", "Logout", "Login", new { area = "" }, null)</li>
 
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                }
 
-        </nav>
+            </nav>
+
+        </div>
+
+        
 
         <div class="row">
             <div class="col-md-3 ml-md-auto">
