@@ -131,8 +131,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PagoExitosoController.cs" />
+
     <Compile Include="Controllers\LoginController.cs" />
+
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\PromotionProductController.cs" />
     <Compile Include="Controllers\RegisterCustomerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -160,6 +167,7 @@
     <Content Include="Img\test.png" />
     <Content Include="Img\test2.jpg" />
     <Content Include="JS\BrowserProduct.js" />
+    <Content Include="JS\ProductCar.js" />
     <Content Include="JS\ProductView.js" />
     <Content Include="Scripts\Assets\css\main-style.css" />
     <Content Include="Scripts\Assets\css\style.css" />
@@ -340,6 +348,9 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Product\ViewProduct.cshtml" />
+    <Content Include="Views\PromotionProduct\PromotionProduct.cshtml" />
+    <Content Include="Views\PagoExitoso\PagoExitoso.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>

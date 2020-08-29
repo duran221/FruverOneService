@@ -9,7 +9,6 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
-
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/JS/BrowserProduct.js")
@@ -60,9 +59,6 @@
 
                 }
             </div>
-        </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
             <img src="~/Img/fruverOne.jpeg" width="70" height="70" />&nbsp;&nbsp;
             @Html.ActionLink("FruverONE", "Frutas", "Product", new { area = "" }, new { @class = "navbar-brand green" })
 
@@ -83,6 +79,10 @@
                         </div>
 
                     </li>  &nbsp;&nbsp;
+                   &nbsp;&nbsp;
+                            <li class="nav-item">
+                                @Html.ActionLink("Promociones", "Index", "PromotionProduct", new { area = "" }, new { @class = "navbar-brand red" })
+                            </li>
                     <li class="nav-item">
 
                         @Html.ActionLink("Acerca de nosotros", "", "", new { area = "" }, new { @class = "navbar-brand green" })
